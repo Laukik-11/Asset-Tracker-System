@@ -1,0 +1,58 @@
+.loginButton {
+  font-family: "Open Sans", sans-serif;
+  font-size: 20px;
+  padding: 10px 10px;
+  color: #656c75;
+  background: #f7f7f7;
+  border-radius: 4px;
+  cursor: pointer;
+  outline: none;
+  border: none;
+}
+.navLogo {
+  width: 50px;
+  height: 50px;
+}
+.navbar-dark .navbar-toggler {
+  border-color: #fff;
+}
+.nav-link {
+  font-family: "Open Sans", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.01em;
+  color: #656c75;
+  cursor: pointer;
+}
+.navbar-lower {
+  padding: 6px;
+  background: linear-gradient(
+    90.06deg,
+    #ff0080 -7.71%,
+    #ff201f 54.19%,
+    #fc7923 107.98%
+  );
+  .navbar-links {
+    display: flex;
+    justify-content: left;
+    p {
+      cursor: pointer;
+      font-family: "Open Sans";
+      font-style: normal;
+      font-weight: 700;
+      font-size: 16px;
+      color: #fff;
+      line-height: 22px;
+      margin: 0;
+      padding: 1% 2%;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .navbar-main {
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+  }
+}
