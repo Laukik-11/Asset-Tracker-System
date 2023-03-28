@@ -31,7 +31,7 @@ const Ticketform = () => {
     const token = window.localStorage.getItem("token");
     axios
       .post(
-        "http://localhost:8000/getassetdata",
+        `${process.env.REACT_APP_URL}/getassetdata`,
         { data: event.target.value },
         {
           headers: {
@@ -46,7 +46,7 @@ const Ticketform = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8000/getasset", {
+      .get(`${process.env.REACT_APP_URL}/getasset`, {
         headers: {
           authorization: `bearer ${token}`,
         },

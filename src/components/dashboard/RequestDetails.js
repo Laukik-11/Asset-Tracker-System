@@ -10,7 +10,7 @@ const RequestDetails = () => {
   const { id } = params;
   useEffect(() => {
     axios
-      .get(`http://localhost:8000/getrequest/${id}`, {
+      .get(`${process.env.REACT_APP_URL}/getrequest/${id}`, {
         headers: { authorization: `bearer ${token}` },
       })
       .then((res) => {

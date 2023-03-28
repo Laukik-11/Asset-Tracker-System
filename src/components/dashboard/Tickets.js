@@ -24,7 +24,7 @@ const Response = () => {
     if (!isRun) return;
     isRun.current = true;
     axios
-      .get("http://localhost:8000/getticket", {
+      .get(`${process.env.REACT_APP_URL}/getticket`, {
         headers: { authorization: `bearer ${token}` },
       })
       .then((res) => {
@@ -38,7 +38,7 @@ const Response = () => {
   const updateStatus = (id) => {
     const token = window.localStorage.getItem("token");
     axios
-      .patch(`http://localhost:8000/updateticket/${id}`, id, {
+      .patch(`${process.env.REACT_APP_URL}/updateticket/${id}`, id, {
         headers: { authorization: `bearer ${token}` },
       })
       .then(() => {
@@ -78,6 +78,7 @@ const Response = () => {
             <th>S.no.</th>
             <th>Ticket</th>
             <th>Item Name</th>
+            <th>Time</th>
             <th>Description</th>
             <th>Status</th>
 
@@ -95,9 +96,9 @@ const Response = () => {
                     <td>{index + 1}</td>
                     <td>{items.title}</td>
                     <td>{items.item.name}</td>
-                    {/* <td>{time(items.request.timestamp)} </td> */}
+                    <td>{time(items.item.timestamp)} </td>
                     <td>{items.description}</td>
-                    {items.status == 0 ? (
+                    {items.status === 0 ? (
                       <td className="btn-outline-danger">On Hold</td>
                     ) : (
                       <td className="btn-outline-success">Solved</td>

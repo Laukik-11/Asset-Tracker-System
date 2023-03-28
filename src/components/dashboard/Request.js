@@ -28,7 +28,7 @@ const Request = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:8000/addasset", state, {
+      await axios.post(`${process.env.REACT_APP_URL}/addasset`, state, {
         headers: { authorization: `bearer ${token}` },
       });
       alert("Successfully requested");

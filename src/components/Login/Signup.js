@@ -20,7 +20,7 @@ const Signup = () => {
         password,
         password_confirmation,
       };
-      await axios.post("http://localhost:8000/signup", data, {
+      await axios.post(`${process.env.REACT_APP_URL}/signup`, data, {
         headers: {
           "Content-Type": "application/json",
         },

@@ -19,7 +19,7 @@ const DashBoard = () => {
     if (!isRun) return;
     isRun.current = true;
     axios
-      .get("http://localhost:8000/getasset", {
+      .get(`${process.env.REACT_APP_URL}/getasset`, {
         headers: { authorization: `bearer ${token}` },
       })
       .then((res) => {

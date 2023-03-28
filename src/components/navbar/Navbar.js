@@ -80,7 +80,7 @@ const Navbar = () => {
           <div className="navbar-links container">
             <p
               style={
-                location.pathname == "/home"
+                location.pathname === "/home"
                   ? { borderBottom: "4px solid white" }
                   : {}
               }
@@ -91,7 +91,7 @@ const Navbar = () => {
             {/* box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); */}
             <p
               style={
-                location.pathname == "/ticket"
+                location.pathname === "/ticket"
                   ? {
                       borderBottom: "4px solid white",
                     }
