@@ -26,7 +26,8 @@
   cursor: pointer;
 }
 .navbar-lower {
-  padding: 6px;
+  padding: 0px;
+  height: 100%;
   background: linear-gradient(
     90.06deg,
     #ff0080 -7.71%,
@@ -45,7 +46,7 @@
       color: #fff;
       line-height: 22px;
       margin: 0;
-      padding: 1% 2%;
+      padding: 13px 2%;
     }
   }
 }

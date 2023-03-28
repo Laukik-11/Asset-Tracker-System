@@ -1,7 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
+
 import AddIcon from "../../assets/AddIcon.png";
 import HeroImage from "../../assets/HeroImage.png";
+import checkAuth from "../Login/checkAuth";
 import axios from "axios";
 import "./DashBoard.scss";
 
@@ -16,16 +19,21 @@ const DashBoard = () => {
     if (!isRun) return;
     isRun.current = true;
     axios
-      .get("http://localhost:8000/getrequest", {
+      .get("http://localhost:8000/getasset", {
         headers: { authorization: `bearer ${token}` },
       })
       .then((res) => {
-        setData(res.data.asset);
+        setData(res.data);
       })
       .catch((err) => {
         console.log(err);
       });
-  });
+  }, []);
+  // if (!checkAuth()) return navigate("/login ");
+
+  // const openArticle = (id) => {
+  //   axios.get;
+  // };
 
   const time = (savedTime) => {
     const formatedDate = new Date(savedTime).toLocaleString("en-US", {
@@ -62,11 +70,13 @@ const DashBoard = () => {
         <table className="data-table" width={"100%"}>
           <thead>
             <tr>
-              <th>User</th>
-              <th>Item</th>
-              <th>Quantity</th>
-              <th>Reason</th>
+              <th>S. no.</th>
+              <th>Employee</th>
+              <th>Product</th>
+              <th>Date of Purchase</th>
+              <th>Serial Number</th>
               <th>Timestamp</th>
+              <th>Description</th>
             </tr>
           </thead>
           <tbody>
@@ -74,11 +84,20 @@ const DashBoard = () => {
               data.map((items, index) => {
                 return (
                   <tr key={index}>
-                    <td>{items.user.name}</td>
-                    <td>{items.item.name}</td>
-                    <td>{items.quantity}</td>
-                    <td>{items.reason}</td>
+                    <td>{index + 1}</td>
+                    <td>
+                      <Link to={`/home/${items._id}`}>
+                        {items.user.name.charAt(0).toUpperCase() +
+                          items.user.name.slice(1)}
+                      </Link>
+                    </td>
+                    <td>
+                      {items.name.charAt(0).toUpperCase() + items.name.slice(1)}
+                    </td>
+                    <td>{items.dop}</td>
+                    <td>{items.serialnumber}</td>
                     <td>{time(items.timestamp)} </td>
+                    <td>{items.comments} </td>
                   </tr>
                 );
               })}

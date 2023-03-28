@@ -9,8 +9,10 @@ const Request = () => {
 
   const [state, setState] = useState({
     name: "",
-    quantity: "",
-    reason: "",
+    dop: "",
+    serialnumber: "",
+    assetsvalue: "",
+    comments: "",
   });
 
   const handleInputChange = (event) => {
@@ -24,10 +26,9 @@ const Request = () => {
   const token = window.localStorage.getItem("token");
 
   const handleSubmit = async (e) => {
-    console.log(state);
     e.preventDefault();
     try {
-      await axios.post("http://localhost:8000/createrequest", state, {
+      await axios.post("http://localhost:8000/addasset", state, {
         headers: { authorization: `bearer ${token}` },
       });
       alert("Successfully requested");
@@ -39,9 +40,9 @@ const Request = () => {
 
   return (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
       <div className="container request">
-        <h4 className="p-2">Make a new request :</h4>
+        <h4 className="p-2">New Product Issue :</h4>
         <div className="request-box">
           <form>
             <div className="form-control">
@@ -54,20 +55,38 @@ const Request = () => {
               />
             </div>
             <div className="form-control">
-              <label>Quantity :</label>
+              <label>Date :</label>
               <input
-                type="number"
-                name="quantity"
-                value={state.quantity}
+                type="date"
+                name="dop"
+                value={state.dop}
                 onChange={handleInputChange}
               />
             </div>
             <div className="form-control">
-              <label>Reason :</label>
+              <label>Serial Number :</label>
+              <input
+                type="number"
+                name="serialnumber"
+                value={state.serialnumber}
+                onChange={handleInputChange}
+              />
+            </div>
+            <div className="form-control">
+              <label>AssetValue :</label>
+              <input
+                type="number"
+                name="assetsvalue"
+                value={state.assetsvalue}
+                onChange={handleInputChange}
+              />
+            </div>
+            <div className="form-control">
+              <label>Comments :</label>
               <textarea
                 type="text"
-                name="reason"
-                value={state.reason}
+                name="comments"
+                value={state.comments}
                 onChange={handleInputChange}
               />
             </div>

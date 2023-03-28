@@ -1,6 +1,5 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
-
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import "./Navbar.scss";
 import NavLogo from "../../assets/NavbarLogo.png";
 import UserLogo from "../../assets/UserLogo.png";
@@ -11,18 +10,17 @@ const Navbar = () => {
   const scrollDashboard = () => {
     navigate("/home");
   };
-  //  const scrollToProjects = () => {
-  //   const projects = document.getElementById("projects");
-  //   projects.scrollIntoView({ behavior: "smooth", block: "center" });
-  // };
-  // const scrollToContactForm = () => {
-  //   const contactForm = document.getElementById("contactForm");
-  //   contactForm.scrollIntoView({ behavior: "smooth", block: "center" });
-  // };
-  const logout = () => {
-    window.localStorage.removeItem("token");
-    navigate("/login");
+  const scrollResponse = () => {
+    navigate("/ticket");
   };
+
+  const logoutt = () => {
+    window.localStorage.removeItem("token");
+    navigate("/");
+  };
+
+  const location = useLocation();
+
   return (
     <>
       <div>
@@ -30,7 +28,7 @@ const Navbar = () => {
           <div className="container">
             <Link
               className="navbar-brand"
-              to="/"
+              to="/home"
               style={{ fontWeight: "bold" }}
             >
               <img className="navLogo" src={NavLogo} alt="" />
@@ -57,8 +55,8 @@ const Navbar = () => {
                     &#9881; Settings
                   </Link>
                 </li>
-
-                <li className="nav-item">
+                {/* {username ?? ( */}
+                <li className="nav-item pl-3">
                   <span className="nav-link d-flex justify-content-center align-items-center loginButton">
                     <div className="" style={{ paddingRight: "10px" }}>
                       Account
@@ -66,9 +64,10 @@ const Navbar = () => {
                     <img src={UserLogo} alt="" width={"30px"} />
                   </span>
                 </li>
+                {/* )} */}
                 <li className="nav-item">
                   <span className="nav-link">
-                    <button onClick={logout} className="loginButton">
+                    <button onClick={logoutt} className="loginButton">
                       &#10503;
                     </button>
                   </span>
@@ -79,8 +78,30 @@ const Navbar = () => {
         </nav>
         <div className="navbar-lower">
           <div className="navbar-links container">
-            <p onClick={scrollDashboard}>Dashboard</p>
-            <p>Responses</p>
+            <p
+              style={
+                location.pathname == "/home"
+                  ? { borderBottom: "4px solid white" }
+                  : {}
+              }
+              onClick={scrollDashboard}
+            >
+              Assets
+            </p>
+            {/* box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); */}
+            <p
+              style={
+                location.pathname == "/ticket"
+                  ? {
+                      borderBottom: "4px solid white",
+                    }
+                  : {}
+              }
+              onClick={scrollResponse}
+            >
+              Tickets
+            </p>
+            <p onClick={scrollResponse}>Pending Aprrovals</p>
           </div>
         </div>
       </div>
